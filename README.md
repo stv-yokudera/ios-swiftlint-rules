@@ -16,13 +16,13 @@ SwiftLintのルール
 | control_statement                        | no |if等の制御文の条件式部分は( )で囲むべきでない|||
 | custom_rules                             | no ||||
 | cyclomatic_complexity                    | no |関数内の複雑度は下げるべき(ifやswitchの連続、ループ内の条件分岐)|||
-| discarded_notification_center_observer   | no ||||
-| discouraged_direct_init                  | no |NotificationCenter.addObserver(forName:object:queue:using:)で追加されたobserverは後で除去できるように変数に格納して保持するべき|||
+| discarded_notification_center_observer   | no |NotificationCenter.addObserver(forName:object:queue:using:)で追加されたobserverは後で除去できるように変数に格納して保持するべき|||
+| discouraged_direct_init                  | no |有害な可能性のあるタイプの直接的な初期化をすべきではない<br>(let device = UIDevice(), let bundle = Bundle())|||
 | dynamic_inline                           | no |@inline指定とdynamicを同時に使うべきでない|||
 | empty_enum_arguments                     | no |末尾クロージャを使用するときはメソッド名の後に引数のない空の()は書くべきでない|||
 | empty_parameters                         | no |関数の引数がない時，Void ->でなく() ->を用いるべき|||
 | empty_parentheses_with_trailing_closure  | no |末尾クロージャを使用するときはメソッド名の後に引数のない空の()は書くべきでない|||
-| fallthrough                              | no ||||
+| fallthrough                              | no |fallthroughの使用は避けるべき|||
 | file_length                              | no |ファイルの行数は多くなりすぎないようにすべき|||
 | for_where                                | no |for文において、その内部でifによる値チェック処理しかしないのであればwhere句を使用すべき|||
 | force_cast                               | no |強制キャスト(as!)は避けるべき|||
@@ -32,23 +32,23 @@ SwiftLintのルール
 | generic_type_name                        | no |ジェネリクスの型名は大文字のアルファベットから初めて、英数字のみを含み、かつ1〜20文字の長さにするべき|||
 | identifier_name                          | no |変数名等の識別子は小文字で始まるか全て大文字の英数字だけで構成させるべき|||
 | implicit_getter                          | no |read-onlyな計算プロパティはgetキーワードを書くべきでない|||
-| is_disjoint                              | no ||||
+| is_disjoint                              | no |Set.intersection(_ :).isEmptyよりSet.isDisjoint(with:)を使用するべき|||
 | large_tuple                              | no |タプルのメンバは少なめにすべき|||
 | leading_whitespace                       | no |ファイルの先頭に空白類文字を含むべきでない|||
-| legacy_cggeometry_functions              | no ||||
-| legacy_constant                          | no ||||
-| legacy_constructor                       | no ||||
-| legacy_nsgeometry_functions              | no ||||
+| legacy_cggeometry_functions              | no |レガシーなCGRect系の関数(CGRectGetWidth(rect))ではなく、extensionのプロパティ(rect.width)を使用するべき|||
+| legacy_constant                          | no |レガシーなグローバル定数(CGRectZero)ではなく、構造体スコープの定数(CGRect.zero)を使用するべき|||
+| legacy_constructor                       | no |レガシーなコンビニエンスメソッド(CGRectMake())ではなく、コンストラクタを使用するべき|||
+| legacy_nsgeometry_functions              | no |レガシーなNSRect関数(NSWidth())ではなく、extensionのプロパティ(NSRect.width)を使用するべき|||
 | line_length                              | no |1行における文字数は多くなりすぎないようにすべき|||
 | mark                                     | no |MARKコメントは正しいフォーマットで書くべき|||
-| multiple_closures_with_trailing_closure  | no ||||
+| multiple_closures_with_trailing_closure  | no |複数のクロージャ引数を渡す場合、trailing closure構文を使用するべきではない|||
 | nesting                                  | no |ネスト型は深くても1レベルの深さまで、その他の文は深くても5レベルの深さまでのネストに留めるべき|||
 | notification_center_detachment           | no |NSNotificationCenterに登録したobserverはクラスのdeinit内で除去するべき|||
 | opening_brace                            | no |関数等の開き{は直前に1つのスペースを置いてから書き、なおかつ宣言と同じ行に書くべき|||
 | operator_whitespace                      | no |演算子を定義する際は演算子の前後に1つのスペースを置くべき|||
 | private_over_fileprivate                 | no |トップレベルにあるfileprivateはprivateにするべき|||
 | private_unit_test                        | no |privateなテストケースメソッドは書かない|||
-| protocol_property_accessors_order        | no ||||
+| protocol_property_accessors_order        | no |プロトコルのプロパティを宣言する場合、アクセサーは get setの順にするべき|||
 | redundant_discardable_let                | no |関数の戻り値を参照しない場合、letはわざわざ書くべきではない|||
 | redundant_optional_initialization        | no |オプショナル変数宣言時のnil初期化は冗長なため、書くべきでない|||
 | redundant_string_enum_value              | no |String型のenumの各caseの値をcase名と同じにする際は、その処理は省略できるので書くべきでない|||
@@ -56,8 +56,8 @@ SwiftLintのルール
 | return_arrow_whitespace                  | no |関数の戻り値を指定する->と型名は、それぞれ1つのスペースで区切られるか、別の行に書くべき|||
 | shorthand_operator                       | no |複号代入演算子をなるべく使うべき|||
 | statement_position                       | no |else節やcatch節は直前の}の後に1つのスペースを置き，同じ行に書くべき|||
-| superfluous_disable_command              | no ||||
-| switch_case_alignment                    | no ||||
+| superfluous_disable_command              | no |コード内に // swiftlint:disable <ルール名> <br>を記載して無効化したswiftlintルールについて、無効化領域内で違反が無い場合は、無効化するべきでない||
+| switch_case_alignment                    | no |case文は、switch文と位置を揃えるべき|||
 | syntactic_sugar                          | no |糖衣構文を使うべき|||
 | todo                                     | no |TODOおよびFIXMEコメントは避けるべき|||
 | trailing_comma                           | no |ArrayやDictionary中の末尾の,は避ける/強制すべき|||
@@ -66,7 +66,7 @@ SwiftLintのルール
 | trailing_whitespace                      | no |各行の末尾に空白類文字を書くべきでない|||
 | type_body_length                         | no |型の本体の行数は多くなりすぎないようにすべき|||
 | type_name                                | no |型名は大文字アルファベットで始まる英数字だけで構成され、かつ3~40文字であるべき|||
-| unneeded_break_in_switch                 | no ||||
+| unneeded_break_in_switch                 | no |不要なbreak文を書くべきでない|||
 | unused_closure_parameter                 | no |使用されないクロージャの引数は_で置き換えるべき|||
 | unused_enumerated                        | no |for文でindexないしは要素が使用されないときは.enumerated()の記述は除去できるので除去すべき|||
 | unused_optional_binding                  | no |let _ =によるOptional Bindingではなく、!= nilでOptional判定するべき|||
@@ -84,23 +84,23 @@ SwiftLintのルール
 | identifier | opt-in | 説明 | 有効設定 | 有効にする理由 |
 |-----------|:------------:|------------|:-----------:|:------------:|
 | array_init                               | yes ||||
-| attributes                               | yes ||||
-| closure_end_indentation                  | yes ||||
+| attributes                               | yes ||||
+| closure_end_indentation                  | yes |クロージャの}は開始行とインデントを揃えるべき|○||
 | closure_spacing                          | yes |クロージャ内の式はカッコの間に1つのスペースがあるべき|||
 | conditional_returns_on_newline           | yes |条件文は始まった行の次の行でreturnするべき|○||
-| contains_over_first_not_nil              | yes ||||
+| contains_over_first_not_nil              | yes |first(where:) != nilではなく、containsを使うべき|||
 | empty_count                              | yes |要素が何もないことを確認する際はcount == 0よりもisEmptyを用いるべき|○||
-| explicit_enum_raw_value                  | yes ||||
+| explicit_enum_raw_value                  | yes |Enumにはraw valueを明示的に割り当てるべき|||
 | explicit_init                            | yes |明示的な.init()メソッドの呼び出しは避けるべき|○||
-| explicit_top_level_acl                   | yes ||||
-| explicit_type_interface                  | yes ||||
+| explicit_top_level_acl                   | yes |トップレベルの宣言の場合、アクセス修飾子を明示的に指定するべき|||
+| explicit_type_interface                  | yes |プロパティは、明示的に型を指定するべき（型推論を使用しない）|||
 | extension_access_modifier                | yes ||||
-| fatal_error_message                      | yes ||||
+| fatal_error_message                      | yes |fatalErrorを呼び出す場合、メッセージを記載するべき|○||
 | file_header                              | yes |各ファイルは一貫性のあるヘッダコメントを持つべき|○||
 | first_where                              | yes |.filter { }.firstよりも.first(where:)を用いべき|○||
 | force_unwrapping                         | yes |強制アンラップは避けるべき|○||
 | implicit_return                          | yes ||||
-| implicitly_unwrapped_optional            | yes ||||
+| implicitly_unwrapped_optional            | yes |暗黙的アンラップ型（Implicitly Unwrapped Optional）は、可能な限り避けるべき|○||
 | joined_default_parameter                 | yes ||||
 | let_var_whitespace                       | yes ||||
 | literal_expression_end_indentation       | yes ||||
