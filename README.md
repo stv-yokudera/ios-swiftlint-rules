@@ -19,9 +19,9 @@ SwiftLintのルール
 | discarded_notification_center_observer   | no |NotificationCenter.addObserver(forName:object:queue:using:)で追加されたobserverは後で除去できるように変数に格納して保持するべき|||
 | discouraged_direct_init                  | no |有害な可能性のあるタイプの直接的な初期化をすべきではない<br>(let device = UIDevice(), let bundle = Bundle())|||
 | dynamic_inline                           | no |@inline指定とdynamicを同時に使うべきでない|||
-| empty_enum_arguments                     | no |末尾クロージャを使用するときはメソッド名の後に引数のない空の()は書くべきでない|||
+| empty_enum_arguments                     | no ||||
 | empty_parameters                         | no |関数の引数がない時，Void ->でなく() ->を用いるべき|||
-| empty_parentheses_with_trailing_closure  | no |末尾クロージャを使用するときはメソッド名の後に引数のない空の()は書くべきでない|||
+| empty_parentheses_with_trailing_closure  | no |trailing closureを使用するときはメソッド名の後に引数のない空の()は書くべきでない|||
 | fallthrough                              | no |fallthroughの使用は避けるべき|||
 | file_length                              | no |ファイルの行数は多くなりすぎないようにすべき|||
 | for_where                                | no |for文において、その内部でifによる値チェック処理しかしないのであればwhere句を使用すべき|||
