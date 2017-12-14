@@ -88,7 +88,7 @@ SwiftLintのルール
 | closure_end_indentation                  | yes |クロージャの}は開始行とインデントを揃えるべき|○|可読性向上のため。|
 | closure_spacing                          | yes |クロージャ内の式はカッコの間に1つのスペースがあるべき|○|可読性向上のため。|
 | conditional_returns_on_newline           | yes |条件文は始まった行の次の行でreturnするべき|○|可読性向上のため。|
-| contains_over_first_not_nil              | yes |first(where:) != nilではなく、containsを使うべき|○|containsの方が目的が明確なため。|
+| contains_over_first_not_nil              | yes |first(where:) != nilではなく、containsを使うべき|○|containsの方が条件が明確なため。|
 | empty_count                              | yes |要素が何もないことを確認する際はcount == 0よりもisEmptyを用いるべき|○|isEmptyの方が条件が明確であるため。|
 | explicit_enum_raw_value                  | yes |Enumにはraw valueを明示的に割り当てるべき|||
 | explicit_init                            | yes |明示的な.init()メソッドの呼び出しは避けるべき|○|不要なため。|
