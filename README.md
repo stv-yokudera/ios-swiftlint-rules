@@ -85,22 +85,22 @@ SwiftLintのルール
 |-----------|:------------:|------------|:-----------:|:------------:|
 | array_init                               | yes ||||
 | attributes                               | yes ||||
-| closure_end_indentation                  | yes |クロージャの}は開始行とインデントを揃えるべき|○||
-| closure_spacing                          | yes |クロージャ内の式はカッコの間に1つのスペースがあるべき|||
-| conditional_returns_on_newline           | yes |条件文は始まった行の次の行でreturnするべき|○||
-| contains_over_first_not_nil              | yes |first(where:) != nilではなく、containsを使うべき|||
-| empty_count                              | yes |要素が何もないことを確認する際はcount == 0よりもisEmptyを用いるべき|○||
+| closure_end_indentation                  | yes |クロージャの}は開始行とインデントを揃えるべき|○|可読性向上のため。|
+| closure_spacing                          | yes |クロージャ内の式はカッコの間に1つのスペースがあるべき|○|可読性向上のため。|
+| conditional_returns_on_newline           | yes |条件文は始まった行の次の行でreturnするべき|○|可読性向上のため。|
+| contains_over_first_not_nil              | yes |first(where:) != nilではなく、containsを使うべき|○|containsの方が目的が明確なため。|
+| empty_count                              | yes |要素が何もないことを確認する際はcount == 0よりもisEmptyを用いるべき|○|isEmptyの方が条件が明確であるため。|
 | explicit_enum_raw_value                  | yes |Enumにはraw valueを明示的に割り当てるべき|||
-| explicit_init                            | yes |明示的な.init()メソッドの呼び出しは避けるべき|○||
+| explicit_init                            | yes |明示的な.init()メソッドの呼び出しは避けるべき|○|不要なため。|
 | explicit_top_level_acl                   | yes |トップレベルの宣言の場合、アクセス修飾子を明示的に指定するべき|||
 | explicit_type_interface                  | yes |プロパティは、明示的に型を指定するべき（型推論を使用しない）|||
 | extension_access_modifier                | yes ||||
-| fatal_error_message                      | yes |fatalErrorを呼び出す場合、メッセージを記載するべき|○||
-| file_header                              | yes |各ファイルは一貫性のあるヘッダコメントを持つべき|○||
-| first_where                              | yes |.filter { }.firstよりも.first(where:)を用いべき|○||
-| force_unwrapping                         | yes |強制アンラップは避けるべき|○||
+| fatal_error_message                      | yes |fatalErrorを呼び出す場合、メッセージを記載するべき|○|エラー理由を明確に示すため。|
+| file_header                              | yes |各ファイルは一貫性のあるヘッダコメントを持つべき|○|コード統一のため。|
+| first_where                              | yes |.filter { }.firstよりも.first(where:)を用いべき|○|コード統一のため。|
+| force_unwrapping                         | yes |強制アンラップは避けるべき|○|クラッシュを防止するため。|
 | implicit_return                          | yes ||||
-| implicitly_unwrapped_optional            | yes |暗黙的アンラップ型（Implicitly Unwrapped Optional）は、可能な限り避けるべき|○||
+| implicitly_unwrapped_optional            | yes |暗黙的アンラップ型（Implicitly Unwrapped Optional）は、可能な限り避けるべき|○|クラッシュを防止するため。|
 | joined_default_parameter                 | yes ||||
 | let_var_whitespace                       | yes ||||
 | literal_expression_end_indentation       | yes ||||
@@ -110,8 +110,8 @@ SwiftLintのルール
 | no_extension_access_modifier             | yes ||||
 | no_grouping_extension                    | yes ||||
 | number_separator                         | yes |桁数の多い数値を書く際はセパレータを書くべき(1_000_000)|||
-| object_literal                           | yes |イニシャライザを直接呼び出すよりは#imageLiteralや#colorLiteralを用いるべき|○||
-| operator_usage_whitespace                | yes |演算子を使用する際は前後に1つのスペースを開けるべき|○||
+| object_literal                           | yes |イニシャライザを直接呼び出すよりは#imageLiteralや#colorLiteralを用いるべき|○|視覚的に分かりやすいため。|
+| operator_usage_whitespace                | yes |演算子を使用する際は前後に1つのスペースを開けるべき|○|可読性向上のため。|
 | overridden_super_call                    | yes |オーバーライドされたメソッドは常にsuperを呼び出すべき|○||
 | override_in_extension                    | yes |extension内では、オーバーライドするべきでない|○||
 | pattern_matching_keywords                | yes ||||
@@ -120,12 +120,16 @@ SwiftLintのルール
 | quick_discouraged_call                   | yes ||||
 | quick_discouraged_focused_test           | yes ||||
 | quick_discouraged_pending_test           | yes ||||
-| redundant_nil_coalescing                 | yes |nil結合演算子において、左辺がnilの場合のみ評価される性質上、右辺にnilを書くのは冗長なため、書くべきでない|||
+| redundant_nil_coalescing                 | yes |nil結合演算子において、左辺がnilの場合のみ評価される性質上、右辺にnilを書くのは冗長なため、書くべきでない|○|不要なため。|
 | single_test_class                        | yes |テストファイルには、単一のQuickSpec or XCTestCaseクラスを含むべき|||
 | sorted_first_last                        | yes ||||
-| sorted_imports                           | yes |import部分はソートされているべき|○||
+| sorted_imports                           | yes |import部分はソートされているべき|○|重複を避けるため。|
 | strict_fileprivate                       | yes ||||
-| switch_case_on_newline                   | yes |switch文におけるcaseの各処理は改行した後書くべき|||
+| switch_case_on_newline                   | yes |switch文におけるcaseの各処理は改行した後書くべき|○|可読性向上のため。|
 | trailing_closure                         | yes ||||
-| unneeded_parentheses_in_closure_argument | yes ||||
-| vertical_parameter_alignment_on_call     | yes ||||
+| unneeded_parentheses_in_closure_argument | yes |クロージャ引数を宣言する場合、カッコは書かないべき|○|不要なため。|
+| vertical_parameter_alignment_on_call     | yes |メソッド呼び出しが複数行の場合、パラメータは垂直方向に整列させるべき|○|可読性向上のため。|
+
+## 参考
+[SwiftLint/Source/SwiftLintFramework/Rules/](https://github.com/realm/SwiftLint/tree/master/Source/SwiftLintFramework/Rules)
+
