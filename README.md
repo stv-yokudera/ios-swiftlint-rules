@@ -130,8 +130,6 @@ SwiftLintのルール
 | unneeded_parentheses_in_closure_argument | yes |クロージャ引数を宣言する場合、カッコは書かないべき|○|不要なため。|
 | vertical_parameter_alignment_on_call     | yes |メソッド呼び出しが複数行の場合、パラメータは垂直方向に整列させるべき|○|可読性向上のため。|
 
-※1 
-
 ## 参考
 [SwiftLint/Source/SwiftLintFramework/Rules/](https://github.com/realm/SwiftLint/tree/master/Source/SwiftLintFramework/Rules)
 
