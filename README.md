@@ -112,10 +112,10 @@ SwiftLintのルール
 | number_separator                         | yes |桁数の多い数値を書く際はセパレータを書くべき(1_000_000)|||
 | object_literal                           | yes |イニシャライザを直接呼び出すよりは#imageLiteralや#colorLiteralを用いるべき|○|視覚的に分かりやすいため。|
 | operator_usage_whitespace                | yes |演算子を使用する際は前後に1つのスペースを開けるべき|○|可読性向上のため。|
-| overridden_super_call                    | yes |オーバーライドされたメソッドは常にsuperを呼び出すべき|○||
-| override_in_extension                    | yes |extension内では、オーバーライドするべきでない|○||
+| overridden_super_call                    | yes |オーバーライドされたメソッドは常にsuperを呼び出すべき|○|superを呼び出さない場合はオーバーライド不要なメソッドとなるため。|
+| override_in_extension                    | yes |extension内では、オーバーライドするべきでない|×|[The Swift Programming Language (Swift 4.0.3)](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Extensions.html)|
 | pattern_matching_keywords                | yes ||||
-| private_outlet                           | yes |@IBOutlet変数はprivate修飾するべき|○||
+| private_outlet                           | yes |@IBOutlet変数はprivate修飾するべき|○|他クラスからのアクセスを防ぐため。|
 | prohibited_super_call                    | yes ||||
 | quick_discouraged_call                   | yes ||||
 | quick_discouraged_focused_test           | yes ||||
@@ -129,6 +129,8 @@ SwiftLintのルール
 | trailing_closure                         | yes ||||
 | unneeded_parentheses_in_closure_argument | yes |クロージャ引数を宣言する場合、カッコは書かないべき|○|不要なため。|
 | vertical_parameter_alignment_on_call     | yes |メソッド呼び出しが複数行の場合、パラメータは垂直方向に整列させるべき|○|可読性向上のため。|
+
+※1 
 
 ## 参考
 [SwiftLint/Source/SwiftLintFramework/Rules/](https://github.com/realm/SwiftLint/tree/master/Source/SwiftLintFramework/Rules)
